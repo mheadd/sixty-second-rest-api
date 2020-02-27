@@ -4,18 +4,20 @@ A powerful, simple, RESTful API generated from a CSV or text document in about 6
 
 Note - this example is [an update to an older version that I published a few years ago](https://github.com/mheadd/simple-rest-api) that described a similar approach to use containers to set up a REST API from a data file in CSV format.
 
-This example builds on the previous one by using Docker Compose to set up separate containers for a [PostgreSQL](https://hub.docker.com/_/postgres) database and [PostgREST](http://postgrest.org/en/v6.0/), and also populate the database with test data.
+This example builds on the previous one by using [Docker Compose](https://docs.docker.com/compose/) to set up separate containers for a [PostgreSQL](https://hub.docker.com/_/postgres) database and [PostgREST](http://postgrest.org/en/v6.0/), and also populate the database with test data.
 
 ## Structure
 
-* `docker-compose.yml` - this is the Docker Compose file that will build and run the separate containes we need for the database and the REST front end.
+* `docker-compose.yml` - this is the Docker Compose file that will build and run the separate containers we need for the database and the REST front end.
 * `.env` - a file to hold environmental variables used by the Docker Compose script. Modify these as needed.
-* `init/setup.sql` - this is the SQL file that will be executed when the PostgreSQL container is run, it sets up a new table to hold our data and imports the data from a CSV file.
+* `init/setup.sql` - this is the SQL file that will be executed when the PostgreSQL container is run, it sets up a new table to hold our data and imports the data from a CSV file. For more on how this works, see the section on initialization scripts in the [documentation for the PostgreSQL image on Docker Hub](https://hub.docker.com/_/postgres).
 * `data/{name-of-your-data-file}.csv` - the file that holds the data you want to serve through your API.
 
 ## Usage
 
-First, find a CSV file for some data that you want to use in your API. There are lots and lots of sources [here](https://www.data.gov/). For the purposes of this example, I'll use a data set that is similar to the one used in my [older example](https://github.com/mheadd/simple-rest-api). You can find meta information about this data set [here](https://data.louisvilleky.gov/dataset/environmental-health-inspection-results):
+Make sure you have Docker Compose [installed on your machine](https://docs.docker.com/compose/install/).
+
+First, find a CSV file for some data that you want to use in your API. There are lots and lots of sources [here](https://www.data.gov/). For the purposes of this example, I'll use a data set that is similar to the one used in my [older example](https://github.com/mheadd/simple-rest-api). You can find meta information about this data set [here](https://data.louisvilleky.gov/dataset/environmental-health-inspection-results). Download this file to the `/data` directory:
 
 ```bash
 ~$ curl -s https://data.louisvilleky.gov/sites/default/files/26911/Inspection_Results_School_Food_Service.csv > data/Inspection_Results_School_Food_Service.csv
