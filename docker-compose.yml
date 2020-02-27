@@ -1,0 +1,25 @@
+version: '3'
+services:
+  server:
+    image: postgrest/postgrest
+    ports:
+      - "3000:3000"
+    links:
+      - db:db
+    environment:
+      PGRST_DB_URI: postgres://${DB_USER}:${DB_PASS}@db:5432/${DB_NAME}
+      PGRST_DB_SCHEMA: ${DB_SCHEMA}
+      PGRST_DB_ANON_ROLE: ${DB_USER} 
+    depends_on:
+      - db
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+    - "./init:/docker-entrypoint-initdb.d"
+    - "./data:/tmp/"
