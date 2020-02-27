@@ -29,7 +29,7 @@ Next, we need to crete the table structure in PostgreSQL. This is super easy if 
 ~$ csvsql -i postgresql data/Inspection_Results_School_Food_Service.csv
 ```
 
-Copy and paste the `CREATE TABLE` syntax into the `data/setup.sql` file. In our Docker Compose file, we specify a SQL script to run when the container is started, and specify a place for the CSV data want to import. 
+Copy and paste the `CREATE TABLE` syntax into the `data/setup.sql` file. In our Docker Compose file, we [specify a SQL script to run](https://github.com/mheadd/sixty-second-rest-api/blob/master/docker-compose.yml#L24) when the container is started, and [specify a place](https://github.com/mheadd/sixty-second-rest-api/blob/master/docker-compose.yml#L25) for the CSV data want to import. 
 
 Now it's time to build and run our containers:
 
@@ -98,4 +98,6 @@ For more on querying data using PostgREST, [check out the docs](http://postgrest
 
 ## Pushing to the cloud
 
-Once you've got your data and Docker Compose file working like you want, you can push it all to the cloud and make your API available to others. Amazon's Elastic Container Service [supports Docker Compose files](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html) for deploying multi-container apps so you can use the ECS CLI to push it to the cloud.
+Once you've got your data and Docker Compose file working like you want, you can push it all to the cloud and make your API available to others. 
+
+Amazon's Elastic Container Service [supports Docker Compose files](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html) for deploying multi-container apps so you can use the ECS CLI to push it to the cloud.
