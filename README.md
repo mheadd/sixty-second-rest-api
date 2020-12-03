@@ -100,4 +100,4 @@ For more on querying data using PostgREST, [check out the docs](http://postgrest
 
 Once you've got your data and Docker Compose file working like you want, you can push it all to the cloud and make your API available to others. 
 
-Amazon's Elastic Container Service [supports Docker Compose files](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI.html) for deploying multi-container apps so you can use the ECS CLI to push it to the cloud.
+You can read more here about [depolying to Amazon EC2 and Fargate using Docker Compose](https://aws.amazon.com/blogs/containers/deploy-applications-on-amazon-ecs-using-docker-compose/).
